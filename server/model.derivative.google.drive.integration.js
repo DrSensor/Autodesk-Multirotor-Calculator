@@ -63,7 +63,7 @@ router.post('/integration/sendToTranslation', jsonParser, function (req, res) {
 
       // Forge OSS Bucket Name: username + userId (no spaces, lower case)
       // that way we have one bucket for each Google account using this application
-      var ossBucketKey = (user.displayName.replace(/\W+/g, '') + '123' + user.id).toLowerCase();
+      var ossBucketKey = (user.displayName.replace(/\W+/g, '') + user.id).toLowerCase();
 
       var ossClient = ForgeOSS.ApiClient.instance;
       var ossOAuth = ossClient.authentications ['oauth2_application']; // not the 'oauth2_access_code', as per documentation
