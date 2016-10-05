@@ -110,6 +110,7 @@ router.get('/google/getTreeNode', function (req, res) {
 
 
     // in case we decide to not return files without extension
+    /*
     var count = items.length;
     while (count--) {
       var item = items[count];
@@ -120,7 +121,7 @@ router.get('/google/getTreeNode', function (req, res) {
           items.splice(count, 1);
       }
     }
-
+    */
 
     res.end(prepareArrayForJSTree(items));
   });
