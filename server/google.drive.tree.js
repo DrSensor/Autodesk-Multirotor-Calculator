@@ -111,17 +111,17 @@ router.get('/google/getTreeNode', function (req, res) {
 
     // in case we decide to not return files without extension
     /*
-    var count = items.length;
-    while (count--) {
-      var item = items[count];
-      if (item.mimeType !== 'application/vnd.google-apps.folder') {
-        var re = /(?:\.([^.]+))?$/; // regex to extract file extension
-        var extension = re.exec(item.title)[1];
-        if (!extension)
-          items.splice(count, 1);
-      }
-    }
-    */
+     var count = items.length;
+     while (count--) {
+     var item = items[count];
+     if (item.mimeType !== 'application/vnd.google-apps.folder') {
+     var re = /(?:\.([^.]+))?$/; // regex to extract file extension
+     var extension = re.exec(item.title)[1];
+     if (!extension)
+     items.splice(count, 1);
+     }
+     }
+     */
 
     res.end(prepareArrayForJSTree(items));
   });
