@@ -94,9 +94,10 @@ router.get('/google/getTreeNode', function (req, res) {
     {
       while (count--) {
         var item = items[count];
-        if (item.parents.length > 0 && !item.parents[0].isRoot) {
-          items.splice(count, 1);
-        }
+        // ToDo: handle folder structure better
+        //if (item.parents.length > 0 && !item.parents[0].isRoot) {
+        //  items.splice(count, 1);
+        //}
       }
     }
     else {
