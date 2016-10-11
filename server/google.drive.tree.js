@@ -79,71 +79,48 @@ router.get('/google/getTreeNode', function (req, res) {
     return;
   }
 
+  var folderId = req.query.id;
+  
   oauth2Client.setCredentials({
     access_token: tokenSession.getGoogleToken()
   });
   var drive = google.drive({version: 'v2', auth: oauth2Client});
+
+  // as we don't know how many pages we have,
+  // we'll do a recursive call on all pages
+  // following the root folder from the user
+  res.setHeader('Content-Type', 'application/json');
+  res.write('[');
+  drivePage(res, drive,folderId, null, true);
+});
+
+function drivePage(res, drive, folderId, npToken, first){
   drive.files.list({
-    pageSize: 1000,
-    //fields: "nextPageToken, files(id, parents, iconLink, mimeType, name)"
+    maxResults: 1000,
+    q: (folderId === '#' ?  '\'root\' in parents' : '\'' + folderId + '\' in parents') + ' and trashed = false',
+    fields: 'nextPageToken, items(id,mimeType,title, iconLink)',
+    pageToken: npToken
   }, function (err, lst) {
     if (err) console.log(err);
     var items = lst.items;
-    var count = items.length;
-    if (req.query.id === '#') // root
-    {
-      while (count--) {
-        var item = items[count];
-        // ToDo: handle folder structure better
-        //if (item.parents.length > 0 && !item.parents[0].isRoot) {
-        //  items.splice(count, 1);
-        //}
-      }
-    }
-    else {
-      while (count--) {
-        var item = items[count];
-        if (item.parents.length == 0 || item.parents[0].id !== req.query.id) {
-          items.splice(count, 1);
-        }
-      }
-    }
+    
+    items.forEach(function(item){
+      var treeItem = {
+        id: item.id,
+        text: item.title,
+        type: item.mimeType,
+        icon: item.iconLink,
+        children: (item.mimeType === 'application/vnd.google-apps.folder')
+      };
+      res.write((first?'':',') + JSON.stringify(treeItem));
+      first = false;
+    });
 
-
-    // in case we decide to not return files without extension
-    /*
-     var count = items.length;
-     while (count--) {
-     var item = items[count];
-     if (item.mimeType !== 'application/vnd.google-apps.folder') {
-     var re = /(?:\.([^.]+))?$/; // regex to extract file extension
-     var extension = re.exec(item.title)[1];
-     if (!extension)
-     items.splice(count, 1);
-     }
-     }
-     */
-
-    res.end(prepareArrayForJSTree(items));
+    if (lst.nextPageToken)
+      drivePage(res, drive, folderId, lst.nextPageToken, first);
+    else
+      res.end(']');
   });
-});
-
-// Formats a list to JSTree structure
-function prepareArrayForJSTree(listOf) {
-  if (listOf == null) return '';
-  var treeList = [];
-  listOf.forEach(function (item, index) {
-    //console.log(item);
-    var treeItem = {
-      id: item.id,
-      text: item.title,
-      type: item.mimeType,
-      icon: item.iconLink,
-      children: (item.mimeType === 'application/vnd.google-apps.folder')
-    };
-    treeList.push(treeItem);
-  });
-  return JSON.stringify(treeList);
 }
 
 module.exports = router;
