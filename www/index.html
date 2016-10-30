@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--TODO: place chooser spinner  -->
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,11 +8,16 @@
   <!-- Common packages: JQuery & Bootstrap -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/jstree/style.css"/>
+  <link rel="stylesheet" href="/css/jquery-ui.min.css">
   <script language="JavaScript" src="/js/jquery.min.js"></script>
   <script language="JavaScript" src="/js/bootstrap.min.js"></script>
   <script language="JavaScript" src="/js/jstree.min.js"></script>
   <script language="JavaScript" src="/js/moment.min.js"></script>
   <script language="JavaScript" src="/js/notify.min.js"></script>
+  <script language="JavaScript" src="/js/Chart.min.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>
+  <script src="/js/jquery.mousewheel.js"></script>
+
   <!-- Autodesk Forge Viewer files -->
   <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.min.css" type="text/css">
   <script language="JavaScript" src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js"></script>
@@ -18,6 +25,9 @@
   <!-- this project main script -->
   <link rel="shortcut icon" href=/img/favicon.ico type=image/x-icon>
   <link rel="stylesheet" href="/css/main.css"/>
+  <script language="JavaScript" src="/js/equation.js"></script>
+  <script language="JavaScript" src="/js/input.js"></script>
+  <script language="JavaScript" src="/js/analysis.js"></script>
   <script language="JavaScript" src="/js/oauth.js"></script>
   <script language="JavaScript" src="/js/viewer.js"></script>
   <script language="JavaScript" src="/js/google.js"></script>
@@ -41,6 +51,104 @@
       <div id="forgeViewer" class="forgeViewer"></div>
     </div>
   </div>
+
+
+  <div class="row">
+
+    <div class="col-sm-3">
+      <div class="panel panel-default foldertree">
+        <!--TODO: create mass parameter  -->
+
+        <div class="row">
+          <div class="col-sm-4">
+            <p>
+              <label for="spinner">Number of motors:</label>
+              <input id="num_motor" name="value">
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p>
+              <label for="spinner">KV (RPM/V):</label>
+              <input id="kv_motor" name="value">
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p>
+              <label for="spinner">ESC max (A):</label>
+              <input id="Amax_esc" name="value">
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <p>
+              <label for="spinner">Diameter (in):</label>
+              <input id="diameter_prop" name="value">
+            </p>
+          </div>
+          <div class="col-sm-3">
+            <p>
+              <label for="spinner">Pitch (in):</label>
+              <input id="pitch_prop" name="value">
+            </p>
+          </div>
+          <div class="col-sm-3">
+            <p>
+              <label for="spinner">Blades per prop (#):</label>
+              <input id="blade_prop" name="value">
+            </p>
+          </div>
+          <div class="col-sm-3">
+            <p>
+              <label for="spinner">Material:</label>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <p>
+              <label for="spinner">Number of Batteries:</label>
+              <input id="num_battery" name="value">
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p>
+              <label for="spinner">Net capacity (mAh):</label>
+              <input id="mAh_battery" name="value">
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p>
+              <label for="spinner">Number of Cells per Battery:</label>
+              <input id="cell_battery" name="value">
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="col-sm-6">
+      <div class="panel panel-default foldertree">
+        <div class="col-sm-6">
+          <canvas id="weightChart"></canvas>
+        </div>
+        <div class="col-sm-6">
+          <canvas id="flightChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-3">
+      <!--TODO: show calculated result  -->
+      <div class="panel panel-default foldertree"></div>
+    </div>
+  </div>
+
 </div>
 <footer class="footer">
   <span><a href="http://developer.autodeskk.com"><img src="img/autodesk-logo.png" alt="Autodesk" height="16"> Autodesk <img src="img/autodesk-forge.png" alt="Forge" height="20">Forge</a></span>

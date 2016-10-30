@@ -25,7 +25,7 @@ var app = express();
 
 // this session will be used to save the oAuth token
 app.use(cookieParser());
-app.set('trust proxy', 1) // trust first proxy - HTTPS on Heroku 
+app.set('trust proxy', 1) // trust first proxy - HTTPS on Heroku
 app.use(session({
   secret: 'autodeskforge',
   cookie: {
@@ -46,6 +46,12 @@ app.use('/js', express.static(__dirname + '/../node_modules/bootstrap/dist/js'))
 app.use('/js', express.static(__dirname + '/../node_modules/jquery/dist')); // redirect static calls
 app.use('/js', express.static(__dirname + '/../node_modules/jstree/dist')); // redirect static calls
 app.use('/js', express.static(__dirname + '/../node_modules/moment/min')); // redirect static calls
+
+app.use('/js', express.static(__dirname + '/../node_modules/jquery-ui-dist')); // redirect static calls
+app.use('/js', express.static(__dirname + '/../node_modules/chart.js/dist')); // redirect static calls
+app.use('/js', express.static(__dirname + '/../node_modules/jquery-mousewheel')); // redirect static calls
+app.use('/css', express.static(__dirname + '/../node_modules/jquery-ui-dist')); // redirect static calls
+
 app.use('/css', express.static(__dirname + '/../node_modules/bootstrap/dist/css')); // redirect static calls
 app.use('/css/jstree', express.static(__dirname + '/../node_modules/jstree/dist/themes/default')); // redirect static calls (jstree use 'style.css', which is very generic, so let's use an extra folder)
 app.use('/fonts', express.static(__dirname + '/../node_modules/bootstrap/dist/fonts')); // redirect static calls

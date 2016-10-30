@@ -5,6 +5,7 @@
   "dependencies": {
     "body-parser": "*",
     "bootstrap": "*",
+    "chart.js": "*",
     "cookie-parser": "*",
     "express": "*",
     "express-session": "*",
@@ -14,6 +15,9 @@
     "forge-oss": "*",
     "googleapis": "*",
     "jquery": "*",
+    "jquery-mousewheel": "*",
+    "jquery-ui": "*",
+    "jquery-ui-dist": "*",
     "jstree": "*",
     "moment": "*",
     "request": "*",
