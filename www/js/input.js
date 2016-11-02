@@ -1,23 +1,23 @@
 $( function() {
   var mMotor = {
-    quantity: 0,
-    Kv: 0,
-    Amax: 0
+    num: 4,
+    Kv: 920,
+    Amax: 30
   };
   var mPropeller = {
-    radius: 0,
-    pitch: 0,
-    blade: 0,
+    radius: 9/2.0,
+    pitch: 4,
+    blade: 2,
     material: "plastic"
   };
   var mBattery = {
-    quantity: 0,
-    mAh: 0,
-    cell: 0
+    num: 1,
+    mAh: 5000,
+    cell: 4
   };
 
   function updateChart() {
-    var mWeight = vehicleWeightDistributio(mMotor, mPropeller, mBattery);
+    var mWeight = vehicleWeightDistribution(mMotor, mPropeller, mBattery);
     updateWeightData(mWeight);
   };
 

@@ -10,22 +10,35 @@ function initCalc() {
     scaleOverride:true,
     data: {
       labels: [
-        "Red",
-        "Blue",
-        "Yellow"
+        "motor",
+        "esc",
+        "battery",
+        "frame",
+        "wiring",
+        "avionics",
+        "propeller"
       ],
       datasets: [
         {
-          data: [30, 40, 30],
+          data: [20, 8.1, 42.2, 20.5, 3.8, 4, 1.5],
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
-            "#FFCE56"
+            "#FFCE56",
+            "#993399",
+            "#3399ff",
+            "#ff66ff",
+            "#33cc33"
+
           ],
           hoverBackgroundColor: [
             "#FF6384",
             "#36A2EB",
-            "#FFCE56"
+            "#FFCE56",
+            "#993399",
+            "#3399ff",
+            "#ff66ff",
+            "#33cc33"
           ]
         }]
       }
@@ -94,7 +107,7 @@ function updateWeightData(object) {
       weightChart.data.datasets[0].data[2] = object.battery;
       // break;
     // case "Structural":
-      weightChart.data.datasets[0].data[3] = object.frame;
+      weightChart.data.datasets[0].data[3] = object.structure;
       // break;
     // case "Wiring":
       weightChart.data.datasets[0].data[4] = object.wiring;
@@ -107,6 +120,11 @@ function updateWeightData(object) {
       // break;
     // default:
   // }
+  var total = 0;
+  for (var i = 0; i < weightChart.data.datasets[0].data.length; i++) {
+    total += weightChart.data.datasets[0].data[i];
+  }
+  $('#totalweight').text(total);
   weightChart.update();
 }
 
