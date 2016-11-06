@@ -8,6 +8,21 @@ function initCalc() {
   weightChart = new Chart(weightCtx, {
     type: 'doughnut',
     scaleOverride:true,
+    options: {
+        elements: {
+            center: {
+                // the longest text that could appear in the center
+                fontColor: '#FF6684',
+                fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                fontStyle: 'normal',
+                // fontSize: 12,
+                // if a fontSize is NOT specified, we will scale (within the below limits) maxText to take up the maximum space in the center
+                // if these are not specified either, we default to 1 and 256
+                minFontSize: 1,
+                maxFontSize: 256,
+            }
+        }
+    },
     data: {
       labels: [
         "motor",
@@ -15,7 +30,7 @@ function initCalc() {
         "battery",
         "frame",
         "wiring",
-        "avionics",
+        "payload",
         "propeller"
       ],
       datasets: [
@@ -124,6 +139,7 @@ function updateWeightData(object) {
   for (var i = 0; i < weightChart.data.datasets[0].data.length; i++) {
     total += weightChart.data.datasets[0].data[i];
   }
+  weightChart.options.elements.center.text = (total).toFixed(2) + " gr";
   $('#totalweight').text(total);
   weightChart.update();
 }

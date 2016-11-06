@@ -1,5 +1,5 @@
 function motorWeight(Kv) {
-  if (Kv <= 500) {
+  if (Kv >= 500) {
     return Math.pow(10, 4.0499) * Math.pow(Kv, -0.5329);
   } else {
     return Math.pow(10, 4.4482) * Math.pow(Kv, -0.5242);
@@ -43,9 +43,9 @@ function structuralWeight(vehicleMass) {
 }
 
 function vehicleWeightDistribution(m, p, b) {
-  totalMotor = m.num*motorWeight(m.Kv);
-  totalPropeller = m.num*p.blade*propellerWeight(p.radius, p.material, p.pitch);
-  totalESC = m.num*escWeight(m.Amax);
+  totalMotor = (m.num/4)*motorWeight(m.Kv);
+  totalPropeller = (m.num/4)*p.blade*propellerWeight(p.radius, p.material, p.pitch);
+  totalESC = (m.num/4)*escWeight(m.Amax);
   totalBattery = b.num*batteryWeight(b.mAh, b.cell);
   frameWeight = (19.0/76.0) * (totalMotor+totalPropeller+totalESC+totalBattery);
   wireWeight = (5.0/19.0) * frameWeight;

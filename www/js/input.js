@@ -25,7 +25,7 @@ $( function() {
     min: 2,
     step: 1,
     change: function(event, ui) {
-      mMotor.quantity = $(this).val();
+      mMotor.num = $(this).val();
       updateChart();
     }
   });
@@ -87,7 +87,7 @@ $( function() {
     min: 0,
     step: 1,
     change: function(event, ui) {
-      mBattery.quantity = $(this).val();
+      mBattery.num = $(this).val();
       updateChart();
 
     }
@@ -108,4 +108,9 @@ $( function() {
       updateChart();
     }
   });
+
+  $(document).ready(function () {
+    updateChart();
+  })
+
 } );
