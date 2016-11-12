@@ -165,7 +165,7 @@ function googleCustomMenu(googleNode) {
     items = {
       renameItem: {
         label: "Download as OBJ",
-        icon: "/img/autodesk-forge.png",
+        icon: "/img/logo.jpeg",
         action: function () {
           isFileSupported(googleNode.text, function (supported) {
             if (supported) {
