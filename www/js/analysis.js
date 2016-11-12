@@ -21,6 +21,15 @@ function initCalc() {
                 minFontSize: 1,
                 maxFontSize: 256,
             }
+        },
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+            label: function(tooltipItem, data) {
+              return data.labels[tooltipItem.index] + ": " + data.datasets[0].data[tooltipItem.index].toFixed(2) + " g";
+            }
+          }
         }
     },
     data: {
@@ -113,7 +122,7 @@ function initCalc() {
 function updateWeightData(object) {
   // switch (object) {
     // case "Motors":
-      weightChart.data.datasets[0].data[0] = object.motor;
+      weightChart.data.datasets[0].data[0] = (object.motor);
       // break;
     // case "ESCs":
       weightChart.data.datasets[0].data[1] = object.esc;
@@ -139,7 +148,7 @@ function updateWeightData(object) {
   for (var i = 0; i < weightChart.data.datasets[0].data.length; i++) {
     total += weightChart.data.datasets[0].data[i];
   }
-  weightChart.options.elements.center.text = (total).toFixed(2) + " gr";
+  weightChart.options.elements.center.text = "Total: " + (total).toFixed(2) + " g";
   $('#totalweight').text(total);
   weightChart.update();
 }
