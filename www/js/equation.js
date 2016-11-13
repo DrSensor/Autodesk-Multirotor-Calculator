@@ -22,19 +22,19 @@ function batteryWeight(mAh, cell) {
 function propellerWeight(radius, material, pitch) {
   switch (material) {
     case "wooden":
-      return 0.08884*Math.pow(2*radius, 2) + pitch;
+      return 0.08884*Math.pow(2*radius, 2) + pitch*1.0;
       break;
     case "plastic":
-      return 0.05555*Math.pow(2*radius, 2) + 0.2216*2*radius + pitch;
+      return 0.05555*Math.pow(2*radius, 2) + 0.2216*2*radius + pitch*1.0;
       break;
     case "nylon":
-      return 0.1178*Math.pow(2*radius, 2) - 0.3887*2*radius + pitch;
+      return 0.1178*Math.pow(2*radius, 2) - 0.3887*2*radius + pitch*1.0;
       break;
     case "carbon":
-      return 0.1207*Math.pow(2*radius, 2) - 0.5122*2*radius + pitch;
+      return 0.1207*Math.pow(2*radius, 2) - 0.5122*2*radius + pitch*1.0;
       break;
     default:
-      return 0.05555*Math.pow(2*radius, 2) + 0.2216*2*radius + pitch;
+      return 0.05555*Math.pow(2*radius, 2) + 0.2216*2*radius + pitch*1.0;
   }
 }
 
@@ -46,7 +46,7 @@ function vehicleWeightDistribution(m, p, b) {
   totalMotor = (m.num/4)*motorWeight(m.Kv);
   totalPropeller = (m.num/4)*p.blade*propellerWeight(p.radius, p.material, p.pitch);
   totalESC = (m.num/4)*escWeight(m.Amax);
-  totalBattery = b.num*batteryWeight(b.mAh, b.cell);
+  totalBattery = (b.num/1)*batteryWeight(b.mAh, b.cell);
   frameWeight = (19.0/76.0) * (totalMotor+totalPropeller+totalESC+totalBattery);
   wireWeight = (5.0/19.0) * frameWeight;
   return {

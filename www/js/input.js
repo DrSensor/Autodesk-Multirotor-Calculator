@@ -27,6 +27,10 @@ $( function() {
     spin: function(event, ui) {
       mMotor.num = $(this).val();
       updateChart();
+    },
+    change: function(event, ui) {
+      mMotor.num = $(this).val();
+      updateChart();
     }
   });
   $( "#kv_motor" ).spinner({
@@ -35,12 +39,20 @@ $( function() {
     spin: function(event, ui) {
       mMotor.Kv = $(this).val();
       updateChart();
+    },
+    change: function(event, ui) {
+      mMotor.Kv = $(this).val();
+      updateChart();
     }
   });
   $( "#Amax_esc" ).spinner({
     min: 0,
     step: 1,
     spin: function(event, ui) {
+      mMotor.Amax = $(this).val();
+      updateChart();
+    },
+    change: function(event, ui) {
       mMotor.Amax = $(this).val();
       updateChart();
     }
@@ -54,6 +66,10 @@ $( function() {
     spin: function(event, ui) {
       mPropeller.radius = $(this).val()/2.0;
       updateChart();
+    },
+    change: function(event, ui) {
+      mPropeller.radius = $(this).val()/2.0;
+      updateChart();
     }
   });
   $( "#pitch_prop" ).spinner({
@@ -63,12 +79,20 @@ $( function() {
     spin: function(event, ui) {
       mPropeller.pitch = $(this).val();
       updateChart();
+    },
+    change: function(event, ui) {
+      mPropeller.pitch = $(this).val();
+      updateChart();
     }
   });
   $( "#blade_prop").spinner({
     min: 2,
     step: 1,
     spin: function(event, ui) {
+      mPropeller.blade = $(this).val();
+      updateChart();
+    },
+    change: function(event, ui) {
       mPropeller.blade = $(this).val();
       updateChart();
     }
@@ -88,7 +112,10 @@ $( function() {
     spin: function(event, ui) {
       mBattery.num = $(this).val();
       updateChart();
-
+    },
+    change: function(event, ui) {
+      mBattery.num = $(this).val();
+      updateChart();
     }
   });
   $( "#mAh_battery" ).spinner({
@@ -97,12 +124,20 @@ $( function() {
     spin: function(event, ui) {
       mBattery.mAh = $(this).val();
       updateChart();
+    },
+    change: function(event, ui) {
+      mBattery.mAh = $(this).val();
+      updateChart();
     }
   });
   $( "#cell_battery" ).spinner({
     min: 1,
     step: 1,
     spin: function(event, ui) {
+      mBattery.cell = $(this).val();
+      updateChart();
+    },
+    change: function(event, ui) {
       mBattery.cell = $(this).val();
       updateChart();
     }
