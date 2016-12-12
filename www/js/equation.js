@@ -43,7 +43,7 @@ function structuralWeight(vehicleMass) {
 }
 
 function vehicleWeightDistribution(m, p, b) {
-  totalMotor = (m.num/4)*motorWeight(m.Kv);
+  totalMotor = (m.num/5)*motorWeight(m.Kv);
   totalPropeller = (m.num/4)*p.blade*propellerWeight(p.radius, p.material, p.pitch);
   totalESC = (m.num/4)*escWeight(m.Amax);
   totalBattery = (b.num/1)*batteryWeight(b.mAh, b.cell);

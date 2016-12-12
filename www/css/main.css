@@ -44,3 +44,7 @@ div.forgeViewer {
     height: 540px;
     width: 100%;
 }
+
+p.row {
+  text-align: center;
+}

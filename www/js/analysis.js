@@ -148,7 +148,7 @@ function updateWeightData(object) {
   for (var i = 0; i < weightChart.data.datasets[0].data.length; i++) {
     total += weightChart.data.datasets[0].data[i];
   }
-  weightChart.options.elements.center.text = "Total: " + (total).toFixed(2) + " g";
+  weightChart.options.elements.center.text = "Total Weight: " + (total).toFixed(2) + " g";
   $('#totalweight').text(total);
   weightChart.update();
 }
